@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">StudyKotlinApp</string>
+    <string name="mainfragment">MainFragment</string>
+</resources>
