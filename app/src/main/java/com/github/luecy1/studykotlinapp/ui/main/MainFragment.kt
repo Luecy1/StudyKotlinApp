@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.github.luecy1.studykotlinapp.R
 import com.github.luecy1.studykotlinapp.databinding.MainFragmentBinding
+import com.google.android.material.snackbar.Snackbar
 
 class MainFragment : Fragment() , MainEventHandler{
 
@@ -43,7 +44,10 @@ class MainFragment : Fragment() , MainEventHandler{
     }
 
     override fun onclick() {
-        viewModel.message = "Clicked!"
+        viewModel.text.set("Clicked!")
+
+        Snackbar.make(view!! , "クリックされました。", Snackbar.LENGTH_LONG).show()
+
         Log.d("Test","Clicked!")
     }
 }
