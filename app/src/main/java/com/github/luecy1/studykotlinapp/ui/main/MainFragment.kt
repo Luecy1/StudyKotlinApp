@@ -2,15 +2,14 @@ package com.github.luecy1.studykotlinapp.ui.main
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.github.luecy1.studykotlinapp.R
 import com.github.luecy1.studykotlinapp.databinding.MainFragmentBinding
-import com.google.android.material.snackbar.Snackbar
 
 class MainFragment : Fragment() , MainEventHandler{
 
@@ -41,13 +40,17 @@ class MainFragment : Fragment() , MainEventHandler{
         binding.viewModel = viewModel
         binding.eventHandler = this
 
+        setupObserver()
+    }
+
+    private fun setupObserver() {
+        viewModel.text.observe(this, Observer {
+//            binding.message.text = it ?: ""
+            viewModel.message.set(it ?: "")
+        })
     }
 
     override fun onclick() {
-        viewModel.text.set("Clicked!")
-
-        Snackbar.make(view!! , "クリックされました。", Snackbar.LENGTH_LONG).show()
-
-        Log.d("Test","Clicked!")
+        viewModel.text.postValue("s")
     }
 }
