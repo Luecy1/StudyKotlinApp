@@ -1,5 +1,6 @@
 package com.github.luecy1.studykotlinapp.ui.main
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import com.github.luecy1.studykotlinapp.CardViewActivity
 import com.github.luecy1.studykotlinapp.R
 import com.github.luecy1.studykotlinapp.databinding.MainFragmentBinding
 
@@ -45,12 +47,16 @@ class MainFragment : Fragment() , MainEventHandler{
 
     private fun setupObserver() {
         viewModel.text.observe(this, Observer {
-//            binding.message.text = it ?: ""
             viewModel.message.set(it ?: "")
         })
     }
 
     override fun onclick() {
-        viewModel.text.postValue("s")
+        if ("クリックしました。".equals(binding.message.text.toString())) {
+            val intent = Intent(this.context, CardViewActivity::class.java)
+            startActivity(intent)
+        } else {
+            viewModel.text.postValue("クリックしました。")
+        }
     }
 }
