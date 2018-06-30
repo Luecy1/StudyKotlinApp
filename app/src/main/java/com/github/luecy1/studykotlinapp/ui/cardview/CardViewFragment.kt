@@ -17,7 +17,6 @@ class CardViewFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var layoutManager: RecyclerView.LayoutManager
-    private lateinit var dataset: Array<String>
 
     private val TAG = "CardViewFragment"
 
@@ -26,12 +25,6 @@ class CardViewFragment : Fragment() {
     }
 
     private lateinit var viewModel: CardViewViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        initDataset()
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -44,7 +37,7 @@ class CardViewFragment : Fragment() {
         setRecyclerViewLayoutManager()
 
         // Set CustomAdapter as the adapter for RecyclerView.
-        recyclerView.adapter = CardRecyclerViewAdapter(dataset)
+        recyclerView.adapter = CardRecyclerViewAdapter()
 
         return rootView
     }
@@ -73,7 +66,4 @@ class CardViewFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    private fun initDataset() {
-        dataset = Array(30, {i -> "This is element # $i"})
-    }
 }
