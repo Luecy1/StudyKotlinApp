@@ -41,14 +41,14 @@
             android:onClick="@{() -> eventHandler.onclick()}"
             android:text="Button"
             app:layout_constrainedHeight="true"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintBottom_toTopOf="@+id/gotoNext"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/message"
             app:layout_constraintVertical_chainStyle="spread_inside" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/gotoNext"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

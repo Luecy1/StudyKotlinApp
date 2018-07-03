@@ -9,7 +9,7 @@ interface UserDao {
     fun createUser(user: User)
 
     @Query("SELECT * FROM User")
-    fun findAll()
+    fun findAll() : List<User>
 
     @Update
     fun updateUser(user: User)
