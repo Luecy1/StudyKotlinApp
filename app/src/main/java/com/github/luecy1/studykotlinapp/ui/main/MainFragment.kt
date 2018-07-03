@@ -59,4 +59,11 @@ class MainFragment : Fragment() , MainEventHandler{
             viewModel.text.postValue("クリックしました。")
         }
     }
+
+    override fun gotoRoom() {
+        if (activity != null) {
+            (activity as MainActivityCallback).replaceFragment()
+        }
+    }
+
 }

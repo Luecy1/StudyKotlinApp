@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.luecy1.studykotlinapp.MyApplication
 import com.github.luecy1.studykotlinapp.R
+import com.github.luecy1.studykotlinapp.room.User
+import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 
 class RoomFragment : Fragment() {
@@ -27,8 +30,17 @@ class RoomFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(RoomViewModel::class.java)
 
-//        val dao = MyApplication.database.userDao()
+        val dao = MyApplication.database.userDao()
 
+        val user = User(
+                1L,
+                "First User",
+                Date()
+        )
+        dao.createUser(user)
     }
 
+    open fun showSnackBar(text: String) {
+        Snackbar.make(this.view!!,text,Snackbar.LENGTH_SHORT).show()
+    }
 }

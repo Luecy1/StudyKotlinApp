@@ -5,4 +5,5 @@ package com.github.luecy1.studykotlinapp.ui.main
  */
 interface MainEventHandler {
     fun onclick()
+    fun gotoRoom()
 }
