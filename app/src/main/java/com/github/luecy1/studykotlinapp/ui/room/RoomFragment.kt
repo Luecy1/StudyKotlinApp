@@ -8,8 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.luecy1.studykotlinapp.MyApplication
 import com.github.luecy1.studykotlinapp.R
+import com.github.luecy1.studykotlinapp.UserRepository
 import com.github.luecy1.studykotlinapp.room.User
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 
 
 class RoomFragment : Fragment() {
@@ -29,14 +33,18 @@ class RoomFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(RoomViewModel::class.java)
 
-        val dao = MyApplication.database.userDao()
-
         val user = User(
                 1,
                 "a",
                 "b"
         )
-        dao.createUser(user)
+
+        launch(UI) {
+            async {
+                val userRepo = UserRepository(MyApplication.database.userDao())
+                userRepo.createUser(user)
+            }
+        }
     }
 
     open fun showSnackBar(text: String) {
