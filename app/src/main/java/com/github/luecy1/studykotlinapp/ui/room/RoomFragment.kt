@@ -36,7 +36,7 @@ class RoomFragment : Fragment() {
         val user = User(
                 1,
                 "a",
-                "b"
+                "2018-04-01"
         )
 
         launch(UI) {
